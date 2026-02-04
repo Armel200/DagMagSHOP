@@ -21,10 +21,13 @@ class AppServiceProvider extends ServiceProvider
      * Bootstrap any application services.
      */
     public function boot(): void
-    {
-        //
-        View::share('categories', Category::orderBy('name')->get());
-        Schema::defaultStringLength(191);
-        
+{
+    try {
+        if (Schema::hasTable('categories')) {
+            // Ton code ici seulement si la table existe
+        }
+    } catch (\Exception $e) {
+        // Ignore les erreurs au build
     }
+}
 }
